@@ -56,7 +56,10 @@ class Dog
     LIMIT 1 
     
   SQL
-  DB[:conn].execute(sql, id)[0] 
+  result = DB[:conn].execute(sql, id)[0] 
+  self.new(result[0], result[1], result[2])
+  end 
+  
   
   
     
