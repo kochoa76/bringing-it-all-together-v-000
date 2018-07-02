@@ -64,7 +64,7 @@ class Dog
     
   SQL
   DB[:conn].execute(sql, id).map do |row|
-    dog = self.new(row[0][0], row[0][1], row[0][2])
+    self.new_from_db 
     end 
     dog 
   end 
