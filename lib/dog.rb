@@ -73,15 +73,10 @@ class Dog
     dog = DB[:conn].execute("SELECT * FROM dogs WHERE name =?, breed=?", name, breed)
     
     if !dog.empty? 
-      dog= self.new()
-    sql = <<-SQL
-    SELECT * FROM dogs 
-    WHERE name = ? 
-    LIMIT 1 
-    
-    SQL
-    DB[:conn].execute(sql, name).map do |row|
-      self.new_from_db(row)
+      dog_data= dog[0]
+      self.new(dog_data[0], dog_data[1], dog_data[2])
+    else 
+      self.create(name, breed)
     end 
   end 
   
