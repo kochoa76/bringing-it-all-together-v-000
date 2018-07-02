@@ -50,12 +50,11 @@ class Dog
   end 
   
   def self.find_by_id(id) 
-    sql = <<-SQL
-    SELECT * FROM dogs 
+    sql = "SELECT * FROM dogs 
     WHERE id = ? 
-    LIMIT 1 
+    LIMIT 1"
     
-  SQL
+  
   result = DB[:conn].execute(sql, id)[0] 
   self.new(result[0], result[1], result[2])
   end 
